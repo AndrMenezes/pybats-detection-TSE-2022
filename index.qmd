@@ -181,7 +181,7 @@ matrix at time $t$.
 
 - $\mathbf{W}_t$ is the state evolution variance-covariance matrix.
 
-- the quadruple $\{ \mathbf{F}, \mathbf{G}, \mathbf{V}, \mathbf{W}\}_t$
+- the quadruple $\{ \mathbf{F}, \mathbf{G}, v, \mathbf{W}\}_t$
 describes the class of DLMs.
 
 ## A particular DLM
