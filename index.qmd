@@ -1,5 +1,5 @@
 ---
-title: "Detection of Structural Change in Dynamic Linear Model:"
+title: "Detection of Structural Change in Dynamic Linear Models:"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 subtitle: "The `pybats-detection` package"
 author:
@@ -46,7 +46,7 @@ red <- rgb(237,0,0, maxColorValue = 255)
 ## Today's plan
 
 1. Introduction
-2. Bayesian Dynamic Linear Model
+2. Bayesian Dynamic Linear Models
 3. Automatic Monitoring
 4. The `pybats-detection` package
 5. Examples
@@ -100,7 +100,7 @@ the Bayesian Dynamic Linear Model (DLM).
 
 ## What is a structural change?
 
-- When the time series abruptly change at a point in time.
+- When the time series abruptly changes at a point in time.
 
 - This could happen because of changes in the location, scale or other
 parameters of the process.
@@ -135,13 +135,13 @@ ggplot(data = data_f, aes(x = t, y = y)) +
 ::: {.incremental}
 * [Analyses of structural changes in ecological time series (ASCETS)](https://www.sciencedirect.com/science/article/pii/S1470160X20304064#m0025) by Östman et al. (2020)
 
-* Study of ecological indicators along time such as:
+* Study of ecological indicators over time such as:
   - species abundances;
   - reproduction success;
   - species density or biomass 
 
 * Detecting structural change in ecological time series and adapting is fundamental 
-to improving future **forecasts** as well as for **inference** purposes. 
+to improve future **forecasts** as well as for **inference** purposes. 
 :::
 
 
@@ -171,8 +171,18 @@ y_t &=& \mathbf{F}_t^\top\,\boldsymbol{\theta}_t + \nu_t, \qquad \nu_t \sim N[0,
 time $t$.
 - $\mathbf{F}_t$ is a $p$-dimensional vector of known constant or regressors at
 time $t$.
+
+## Definition
+
 - $\mathbf{G}_t$ is a known $p \times p$ matrix, referred as state evolution
 matrix at time $t$.
+
+- $v_t$ is the observation variance.
+
+- $\mathbf{W}_t$ is the state evolution variance-covariance matrix.
+
+- the quadruple $\{ \mathbf{F}, \mathbf{G}, \mathbf{V}, \mathbf{W}\}_t$
+describes the class of DLMs.
 
 ## A particular DLM
 
@@ -273,7 +283,7 @@ indifference between $M_0$ and $M_1$ when $e_t$ is near to $2.0$.
 
 ## Automatic adaptation
 
-- After the detection of a onset of change or _outliers_ adaptation by increasing
+- After the detection of an onset of change or _outliers_ adaptation by increasing
 parameter uncertainties is incorporated in the model.
 - Thus, the default discount factors are modified to exceptional values.
 
@@ -418,7 +428,7 @@ ggplot(data = filter(data_results, t > 5), aes(x = t, y = y)) +
              size = 1.2) +
   scale_y_continuous(breaks = scales::pretty_breaks(4)) +
   scale_x_continuous(breaks = scales::pretty_breaks(6)) +
-  labs(col = "With monitor?", fill = "With monitor?")
+  labs(col = "With monitoring?", fill = "With monitoring?")
 ```
 
 # [Concluding remarks]{.story}{background-color="#000000"}

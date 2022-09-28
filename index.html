@@ -12,7 +12,7 @@
   <meta name="author" content="André F. B. Menezes   Maynooth University">
   <meta name="author" content="Joint work with Eduardo G. Pinheiro and Hélio S. Migon">
   <meta name="dcterms.date" content="2022-09-28">
-  <title>Detection of Structural Change in Dynamic Linear Model:</title>
+  <title>Detection of Structural Change in Dynamic Linear Models:</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -392,7 +392,7 @@
     <div class="slides">
 
 <section id="title-slide" data-background-size="contain" class="center">
-  <h1 class="title">Detection of Structural Change in Dynamic Linear Model:</h1>
+  <h1 class="title">Detection of Structural Change in Dynamic Linear Models:</h1>
   <p class="subtitle">The <code>pybats-detection</code> package</p>
   <p class="author"><a href="https://andrmenezes.github.io/">André F. B. Menezes</a> <br> Maynooth University</p>
   <p class="author">Joint work with <a href="https://www.linkedin.com/in/eduardo-gabriel-433332142/">Eduardo G. Pinheiro</a> and <a href="https://scholar.google.com/citations?user=Ba2o_wYAAAAJ&amp;hl=en">Hélio S. Migon</a></p>
@@ -403,7 +403,7 @@
 <h2>Today’s plan</h2>
 <ol type="1">
 <li>Introduction</li>
-<li>Bayesian Dynamic Linear Model</li>
+<li>Bayesian Dynamic Linear Models</li>
 <li>Automatic Monitoring</li>
 <li>The <code>pybats-detection</code> package</li>
 <li>Examples</li>
@@ -460,7 +460,7 @@
 <section id="what-is-a-structural-change" class="slide level2">
 <h2>What is a structural change?</h2>
 <ul>
-<li><p>When the time series abruptly change at a point in time.</p></li>
+<li><p>When the time series abruptly changes at a point in time.</p></li>
 <li><p>This could happen because of changes in the location, scale or other parameters of the process.</p></li>
 </ul>
 
@@ -473,13 +473,13 @@
 <div>
 <ul>
 <li class="fragment"><p><a href="https://www.sciencedirect.com/science/article/pii/S1470160X20304064#m0025">Analyses of structural changes in ecological time series (ASCETS)</a> by Östman et al.&nbsp;(2020)</p></li>
-<li class="fragment"><p>Study of ecological indicators along time such as:</p>
+<li class="fragment"><p>Study of ecological indicators over time such as:</p>
 <ul>
 <li class="fragment">species abundances;</li>
 <li class="fragment">reproduction success;</li>
 <li class="fragment">species density or biomass</li>
 </ul></li>
-<li class="fragment"><p>Detecting structural change in ecological time series and adapting is fundamental to improving future <strong>forecasts</strong> as well as for <strong>inference</strong> purposes.</p></li>
+<li class="fragment"><p>Detecting structural change in ecological time series and adapting is fundamental to improve future <strong>forecasts</strong> as well as for <strong>inference</strong> purposes.</p></li>
 </ul>
 </div>
 </section></section>
@@ -509,7 +509,15 @@ y_t &amp;=&amp; \mathbf{F}_t^\top\,\boldsymbol{\theta}_t + \nu_t, \qquad \nu_t \
 <ul>
 <li><span class="math inline">\(\boldsymbol{\theta}_t\)</span> is the <span class="math inline">\(p \times 1\)</span> state vector of model coefficients at time <span class="math inline">\(t\)</span>.</li>
 <li><span class="math inline">\(\mathbf{F}_t\)</span> is a <span class="math inline">\(p\)</span>-dimensional vector of known constant or regressors at time <span class="math inline">\(t\)</span>.</li>
-<li><span class="math inline">\(\mathbf{G}_t\)</span> is a known <span class="math inline">\(p \times p\)</span> matrix, referred as state evolution matrix at time <span class="math inline">\(t\)</span>.</li>
+</ul>
+</section>
+<section id="definition-1" class="slide level2">
+<h2>Definition</h2>
+<ul>
+<li><p><span class="math inline">\(\mathbf{G}_t\)</span> is a known <span class="math inline">\(p \times p\)</span> matrix, referred as state evolution matrix at time <span class="math inline">\(t\)</span>.</p></li>
+<li><p><span class="math inline">\(v_t\)</span> is the observation variance.</p></li>
+<li><p><span class="math inline">\(\mathbf{W}_t\)</span> is the state evolution variance-covariance matrix.</p></li>
+<li><p>the quadruple <span class="math inline">\(\{ \mathbf{F}, \mathbf{G}, \mathbf{V}, \mathbf{W}\}_t\)</span> describes the class of DLMs.</p></li>
 </ul>
 </section>
 <section id="a-particular-dlm" class="slide level2">
@@ -596,7 +604,7 @@ B_t = \exp\left\{-0.5 (h^2 - 2 h e_t)\right\}
 <section id="automatic-adaptation" class="slide level2">
 <h2>Automatic adaptation</h2>
 <ul>
-<li>After the detection of a onset of change or <em>outliers</em> adaptation by increasing parameter uncertainties is incorporated in the model.</li>
+<li>After the detection of an onset of change or <em>outliers</em> adaptation by increasing parameter uncertainties is incorporated in the model.</li>
 <li>Thus, the default discount factors are modified to exceptional values.</li>
 </ul>
 
@@ -711,7 +719,7 @@ Lower potential outlier detected at time 73 with H=7.951e-08, L=7.951e-08 and l=
 <h2>Concluding remarks</h2>
 <ul>
 <li><p><code>pybats-detection</code> provides methods for identifying structural changes and <em>outliers</em> in Bayesian Dynamic Linear Models.</p></li>
-<li><p>The methodology is scalable and efficient for analyse real time series data.</p></li>
+<li><p>The methodology is scalable and efficient for analysingTh real time series data.</p></li>
 <li><p>To extend the intervention and monitoring for other class of models, such as <strong>transfer functions</strong>, <strong>DGLM</strong> and <strong>DGEGM</strong>.</p></li>
 </ul>
 </section></section>
