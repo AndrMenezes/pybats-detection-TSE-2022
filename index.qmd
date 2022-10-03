@@ -442,7 +442,7 @@ ggplot(data = filter(data_results, t > 5), aes(x = t, y = y)) +
 - `pybats-detection` provides methods for identifying structural changes and
 _outliers_ in Bayesian Dynamic Linear Models.
 
-- The methodology is scalable and efficient for analysingTh real time series data.
+- The methodology is scalable and efficient for analysing real time series data.
 
 - To extend the intervention and monitoring for other class of models, such as
 **transfer functions**, **DGLM** and **DGEGM**.
