@@ -11,7 +11,7 @@
 
   <meta name="author" content="André F. B. Menezes   Maynooth University">
   <meta name="author" content="Joint work with Eduardo G. Pinheiro and Hélio S. Migon">
-  <meta name="dcterms.date" content="2022-09-28">
+  <meta name="dcterms.date" content="2022-10-03">
   <title>Detection of Structural Change in Dynamic Linear Models:</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -396,7 +396,7 @@
   <p class="subtitle">The <code>pybats-detection</code> package</p>
   <p class="author"><a href="https://andrmenezes.github.io/">André F. B. Menezes</a> <br> Maynooth University</p>
   <p class="author">Joint work with <a href="https://www.linkedin.com/in/eduardo-gabriel-433332142/">Eduardo G. Pinheiro</a> and <a href="https://scholar.google.com/citations?user=Ba2o_wYAAAAJ&amp;hl=en">Hélio S. Migon</a></p>
-  <p class="date">September 28, 2022</p>
+  <p class="date">October 03, 2022</p>
 </section>
 
 <section id="todays-plan" class="slide level2">
@@ -406,7 +406,7 @@
 <li>Bayesian Dynamic Linear Models</li>
 <li>Automatic Monitoring</li>
 <li>The <code>pybats-detection</code> package</li>
-<li>Examples</li>
+<li>Example</li>
 </ol>
 <div class="cell" data-layout-align="center">
 <style type="text/css">
@@ -504,7 +504,7 @@
 </ul>
 <p><span class="math display">\[\begin{eqnarray}
 y_t &amp;=&amp; \mathbf{F}_t^\top\,\boldsymbol{\theta}_t + \nu_t, \qquad \nu_t \sim N[0, v_t] \label{eq:dlm_observation} \\ \label{eq:dlm_state_evolution}
-\boldsymbol{\theta}_t &amp;=&amp; \mathbf{G}_t\,\boldsymbol{\theta}_{t-1} + \boldsymbol{\omega}_t, \quad \boldsymbol{\omega}_t \sim N[\mathbf{0}, v_t\,\mathbf{W}_t^\ast]
+\boldsymbol{\theta}_t &amp;=&amp; \mathbf{G}_t\,\boldsymbol{\theta}_{t-1} + \boldsymbol{\omega}_t, \quad \boldsymbol{\omega}_t \sim N[\mathbf{0}, \mathbf{W}_t]
 \end{eqnarray}\]</span></p>
 <ul>
 <li><span class="math inline">\(\boldsymbol{\theta}_t\)</span> is the <span class="math inline">\(p \times 1\)</span> state vector of model coefficients at time <span class="math inline">\(t\)</span>.</li>
@@ -517,7 +517,7 @@ y_t &amp;=&amp; \mathbf{F}_t^\top\,\boldsymbol{\theta}_t + \nu_t, \qquad \nu_t \
 <li><p><span class="math inline">\(\mathbf{G}_t\)</span> is a known <span class="math inline">\(p \times p\)</span> matrix, referred as state evolution matrix at time <span class="math inline">\(t\)</span>.</p></li>
 <li><p><span class="math inline">\(v_t\)</span> is the observation variance.</p></li>
 <li><p><span class="math inline">\(\mathbf{W}_t\)</span> is the state evolution variance-covariance matrix.</p></li>
-<li><p>the quadruple <span class="math inline">\(\{ \mathbf{F}, \mathbf{G}, v, \mathbf{W}\}_t\)</span> describes the class of DLMs.</p></li>
+<li><p>The quadruple <span class="math inline">\(\{ \mathbf{F}, \mathbf{G}, v, \mathbf{W}\}_t\)</span> describes the class of DLMs.</p></li>
 </ul>
 </section>
 <section id="a-particular-dlm" class="slide level2">
@@ -598,14 +598,17 @@ B_t = \exp\left\{-0.5 (h^2 - 2 h e_t)\right\}
 <li><span class="math inline">\(l_{max}\)</span>, the maximum number of terms to be considered in <span class="math inline">\(B_t(k)\)</span>.</li>
 </ol>
 <ul>
-<li>Recommended values are <span class="math inline">\(h = 4\)</span> and <span class="math inline">\(\tau = 0.135\)</span>, since these values lead to indifference between <span class="math inline">\(M_0\)</span> and <span class="math inline">\(M_1\)</span> when <span class="math inline">\(e_t\)</span> is near to <span class="math inline">\(2.0\)</span>.</li>
+<li>Recommended values are <span class="math inline">\(l_{max} = 3, h = 4\)</span> and <span class="math inline">\(\tau = 0.135\)</span>, since these values lead to indifference between <span class="math inline">\(M_0\)</span> and <span class="math inline">\(M_1\)</span> when <span class="math inline">\(e_t\)</span> is near to <span class="math inline">\(2.0\)</span>.</li>
 </ul>
 </section>
+<section id="alternative-model-for-location-2" class="slide level2">
+<h2>Alternative model for location</h2>
+
+<img data-src="./figures/comparing_distribution.png" class="r-stretch quarto-figure-center"></section>
 <section id="automatic-adaptation" class="slide level2">
 <h2>Automatic adaptation</h2>
 <ul>
 <li>After the detection of an onset of change or <em>outliers</em> adaptation by increasing parameter uncertainties is incorporated in the model.</li>
-<li>Thus, the default discount factors are modified to exceptional values.</li>
 </ul>
 
 <img data-src="./figures/monitor_schema.png" class="r-stretch quarto-figure-center"></section></section>

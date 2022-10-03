@@ -49,7 +49,7 @@ red <- rgb(237,0,0, maxColorValue = 255)
 2. Bayesian Dynamic Linear Models
 3. Automatic Monitoring
 4. The `pybats-detection` package
-5. Examples
+5. Example
 
 ```{css, echo=FALSE}
 .title {
@@ -164,7 +164,7 @@ models.
 
 \begin{eqnarray}
 y_t &=& \mathbf{F}_t^\top\,\boldsymbol{\theta}_t + \nu_t, \qquad \nu_t \sim N[0, v_t] \label{eq:dlm_observation} \\ \label{eq:dlm_state_evolution} 
-\boldsymbol{\theta}_t &=& \mathbf{G}_t\,\boldsymbol{\theta}_{t-1} + \boldsymbol{\omega}_t, \quad \boldsymbol{\omega}_t \sim N[\mathbf{0}, v_t\,\mathbf{W}_t^\ast]
+\boldsymbol{\theta}_t &=& \mathbf{G}_t\,\boldsymbol{\theta}_{t-1} + \boldsymbol{\omega}_t, \quad \boldsymbol{\omega}_t \sim N[\mathbf{0}, \mathbf{W}_t]
 \end{eqnarray}
 
 - $\boldsymbol{\theta}_t$ is the $p \times 1$ state vector of model coefficients at
@@ -181,7 +181,7 @@ matrix at time $t$.
 
 - $\mathbf{W}_t$ is the state evolution variance-covariance matrix.
 
-- the quadruple $\{ \mathbf{F}, \mathbf{G}, v, \mathbf{W}\}_t$
+- The quadruple $\{ \mathbf{F}, \mathbf{G}, v, \mathbf{W}\}_t$
 describes the class of DLMs.
 
 ## A particular DLM
@@ -278,14 +278,17 @@ with the current DLM, $M_0$;
 3. $l_{max}$, the maximum number of terms to be considered in $B_t(k)$.
 
 
-- Recommended values are $h = 4$ and $\tau = 0.135$, since these values lead to
-indifference between $M_0$ and $M_1$ when $e_t$ is near to $2.0$.
+- Recommended values are $l_{max} = 3, h = 4$ and $\tau = 0.135$, since these
+values lead to indifference between $M_0$ and $M_1$ when $e_t$ is near to $2.0$.
+
+## Alternative model for location
+
+![](./figures/comparing_distribution.png){fig-align="center"}
 
 ## Automatic adaptation
 
 - After the detection of an onset of change or _outliers_ adaptation by increasing
 parameter uncertainties is incorporated in the model.
-- Thus, the default discount factors are modified to exceptional values.
 
 ![](./figures/monitor_schema.png){fig-align="center"}
 
