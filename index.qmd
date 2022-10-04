@@ -1,6 +1,6 @@
 ---
 title: "Detection of Structural Change in Dynamic Linear Models:"
-date: "`r format(Sys.time(), '%B %d, %Y')`"
+date: "October 05, 2022 <br> Maynooth, TSE seminar"
 subtitle: "The `pybats-detection` package"
 author:
 - "[André F. B. Menezes](https://andrmenezes.github.io/) <br> Maynooth University"
@@ -9,6 +9,8 @@ format:
   revealjs:
     theme: default
     slide-number: true
+    chalkboard:
+      buttons: false
     footer: "[andrmenezes.github.io](https://andrmenezes.github.io/)"
     header-includes: |
       <link rel="stylesheet" href="fontawesome.min.css">
@@ -163,7 +165,7 @@ models.
 - A DLM is defined by the following observation and evolution equations:
 
 \begin{eqnarray}
-y_t &=& \mathbf{F}_t^\top\,\boldsymbol{\theta}_t + \nu_t, \qquad \nu_t \sim N[0, v_t] \label{eq:dlm_observation} \\ \label{eq:dlm_state_evolution} 
+Y_t &=& \mathbf{F}_t^\top\,\boldsymbol{\theta}_t + \nu_t, \qquad \nu_t \sim N[0, V_t] \label{eq:dlm_observation} \\ \label{eq:dlm_state_evolution} 
 \boldsymbol{\theta}_t &=& \mathbf{G}_t\,\boldsymbol{\theta}_{t-1} + \boldsymbol{\omega}_t, \quad \boldsymbol{\omega}_t \sim N[\mathbf{0}, \mathbf{W}_t]
 \end{eqnarray}
 
@@ -177,11 +179,11 @@ time $t$.
 - $\mathbf{G}_t$ is a known $p \times p$ matrix, referred as state evolution
 matrix at time $t$.
 
-- $v_t$ is the observation variance.
+- $V_t$ is the observation variance.
 
 - $\mathbf{W}_t$ is the state evolution variance-covariance matrix.
 
-- The quadruple $\{ \mathbf{F}, \mathbf{G}, v, \mathbf{W}\}_t$
+- The quadruple $\{ \mathbf{F}, \mathbf{G}, V, \mathbf{W}\}_t$
 describes the class of DLMs.
 
 ## A particular DLM
@@ -373,8 +375,8 @@ ggplot(data = data_f[data_f$change == "location", ], aes(x = t, y = y)) +
 
 A level DLM is used to described the data. The model is given by:
 \begin{eqnarray}
-y_t &=& \mu_t + \nu_t, \qquad \nu_t \sim N[0, v_t] \label{eq:level_dlm} \\ \nonumber
-\mu_t &=& \mu_{t-1} + \omega_t, \quad \omega_t \sim N[0, v_t\,W_t^\ast]
+Y_t &=& \mu_t + \nu_t, \qquad \nu_t \sim N[0, V_t] \label{eq:level_dlm} \\ \nonumber
+\mu_t &=& \mu_{t-1} + \omega_t, \quad \omega_t \sim N[0, W_t]
 \end{eqnarray}
 where the evolution $\omega_t$ represents the stochastic change in level between
 times $t - 1$ and $t$.

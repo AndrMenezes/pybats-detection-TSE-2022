@@ -11,7 +11,6 @@
 
   <meta name="author" content="André F. B. Menezes   Maynooth University">
   <meta name="author" content="Joint work with Eduardo G. Pinheiro and Hélio S. Migon">
-  <meta name="dcterms.date" content="2022-10-03">
   <title>Detection of Structural Change in Dynamic Linear Models:</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -99,6 +98,8 @@
   <link href="index_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="index_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
   <link href="index_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
@@ -396,7 +397,7 @@
   <p class="subtitle">The <code>pybats-detection</code> package</p>
   <p class="author"><a href="https://andrmenezes.github.io/">André F. B. Menezes</a> <br> Maynooth University</p>
   <p class="author">Joint work with <a href="https://www.linkedin.com/in/eduardo-gabriel-433332142/">Eduardo G. Pinheiro</a> and <a href="https://scholar.google.com/citations?user=Ba2o_wYAAAAJ&amp;hl=en">Hélio S. Migon</a></p>
-  <p class="date">October 03, 2022</p>
+  <p class="date">October 05, 2022 <br> Maynooth, TSE seminar</p>
 </section>
 
 <section id="todays-plan" class="slide level2">
@@ -503,7 +504,7 @@
 <li>A DLM is defined by the following observation and evolution equations:</li>
 </ul>
 <p><span class="math display">\[\begin{eqnarray}
-y_t &amp;=&amp; \mathbf{F}_t^\top\,\boldsymbol{\theta}_t + \nu_t, \qquad \nu_t \sim N[0, v_t] \label{eq:dlm_observation} \\ \label{eq:dlm_state_evolution}
+Y_t &amp;=&amp; \mathbf{F}_t^\top\,\boldsymbol{\theta}_t + \nu_t, \qquad \nu_t \sim N[0, V_t] \label{eq:dlm_observation} \\ \label{eq:dlm_state_evolution}
 \boldsymbol{\theta}_t &amp;=&amp; \mathbf{G}_t\,\boldsymbol{\theta}_{t-1} + \boldsymbol{\omega}_t, \quad \boldsymbol{\omega}_t \sim N[\mathbf{0}, \mathbf{W}_t]
 \end{eqnarray}\]</span></p>
 <ul>
@@ -515,9 +516,9 @@ y_t &amp;=&amp; \mathbf{F}_t^\top\,\boldsymbol{\theta}_t + \nu_t, \qquad \nu_t \
 <h2>Definition</h2>
 <ul>
 <li><p><span class="math inline">\(\mathbf{G}_t\)</span> is a known <span class="math inline">\(p \times p\)</span> matrix, referred as state evolution matrix at time <span class="math inline">\(t\)</span>.</p></li>
-<li><p><span class="math inline">\(v_t\)</span> is the observation variance.</p></li>
+<li><p><span class="math inline">\(V_t\)</span> is the observation variance.</p></li>
 <li><p><span class="math inline">\(\mathbf{W}_t\)</span> is the state evolution variance-covariance matrix.</p></li>
-<li><p>The quadruple <span class="math inline">\(\{ \mathbf{F}, \mathbf{G}, v, \mathbf{W}\}_t\)</span> describes the class of DLMs.</p></li>
+<li><p>The quadruple <span class="math inline">\(\{ \mathbf{F}, \mathbf{G}, V, \mathbf{W}\}_t\)</span> describes the class of DLMs.</p></li>
 </ul>
 </section>
 <section id="a-particular-dlm" class="slide level2">
@@ -679,8 +680,8 @@ B_t = \exp\left\{-0.5 (h^2 - 2 h e_t)\right\}
 <section id="the-model" class="slide level2">
 <h2>The model</h2>
 <p>A level DLM is used to described the data. The model is given by: <span class="math display">\[\begin{eqnarray}
-y_t &amp;=&amp; \mu_t + \nu_t, \qquad \nu_t \sim N[0, v_t] \label{eq:level_dlm} \\ \nonumber
-\mu_t &amp;=&amp; \mu_{t-1} + \omega_t, \quad \omega_t \sim N[0, v_t\,W_t^\ast]
+Y_t &amp;=&amp; \mu_t + \nu_t, \qquad \nu_t \sim N[0, V_t] \label{eq:level_dlm} \\ \nonumber
+\mu_t &amp;=&amp; \mu_{t-1} + \omega_t, \quad \omega_t \sim N[0, W_t]
 \end{eqnarray}\]</span> where the evolution <span class="math inline">\(\omega_t\)</span> represents the stochastic change in level between times <span class="math inline">\(t - 1\)</span> and <span class="math inline">\(t\)</span>.</p>
 <ul>
 <li>This model has <span class="math inline">\(\mathbf{F}_t = \mathbf{G}_t = 1\)</span>.</li>
@@ -762,6 +763,7 @@ Lower potential outlier detected at time 73 with H=7.951e-08, L=7.951e-08 and l=
   <script src="index_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
   <script src="index_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
   <script src="index_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="index_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
   <script src="index_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
@@ -783,7 +785,8 @@ Lower potential outlier detected at time 73 with H=7.951e-08, L=7.951e-08 and l=
 'autoAnimateEasing': "ease",
 'autoAnimateDuration': 1,
 'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleChalkboard(event)\"><kbd>b</kbd> Toggle Chalkboard</a></li>\n<li class=\"slide-tool-item\" data-item=\"5\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.toggleNotesCanvas(event)\"><kbd>c</kbd> Toggle Notes Canvas</a></li>\n<li class=\"slide-tool-item\" data-item=\"6\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.downloadDrawings(event)\"><kbd>d</kbd> Download Drawings</a></li>\n<li class=\"slide-tool-item\" data-item=\"7\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'chalkboard': {"buttons":false},
 'smaller': false,
  
         // Display controls in the bottom right corner
@@ -954,7 +957,7 @@ Lower potential outlier detected at time 73 with H=7.951e-08, L=7.951e-08 and l=
         },
 
         // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, RevealChalkboard, QuartoSupport,
 
           RevealMath,
           RevealNotes,
